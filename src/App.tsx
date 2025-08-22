@@ -1,5 +1,6 @@
 import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
 import NavBar from '../src/components/created_components/NavBar';
+import MovieGrid from "./components/created_components/MovieGrid";
 
 
 
@@ -18,7 +19,9 @@ function App() {
       { isLarge && (
         <GridItem area='aside'>Aside</GridItem>)
       }
-      <GridItem area='main'>Main</GridItem>
+      <GridItem area='main'>
+        <MovieGrid />
+      </GridItem>
     </Grid>
   )
 }
