@@ -2,6 +2,7 @@ import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
 import NavBar from '../src/components/created_components/NavBar';
 
 
+
 function App() {
 
   const isLarge = useBreakpointValue({base: false, lg: true})
@@ -15,9 +16,9 @@ function App() {
         <NavBar />
       </GridItem>
       { isLarge && (
-        <GridItem area='aside' bg='gold'>Aside</GridItem>)
+        <GridItem area='aside'>Aside</GridItem>)
       }
-      <GridItem area='main' bg='dodgerblue'>Main</GridItem>
+      <GridItem area='main'>Main</GridItem>
     </Grid>
   )
 }
