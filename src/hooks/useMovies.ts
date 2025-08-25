@@ -1,17 +1,17 @@
 import apiClient from "@/services/api-client";
-import { Text } from "@chakra-ui/react";
 import { CanceledError } from "axios";
 import { useEffect, useState } from "react"
 
-interface Movie {
+export interface Movie {
     id: number; 
     title: string; 
     release_date: string; 
     vote_average: number;
+    backdrop_path: string;
 
 }
 
-interface FetchPopularMoviesResponse {
+export interface FetchPopularMoviesResponse {
     page: number;
     results: Movie[];
 }
