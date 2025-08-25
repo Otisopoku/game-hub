@@ -1,5 +1,5 @@
 import { Movie } from "@/hooks/useMovies"
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react"
+import { Button, Card, CardBody, Heading, Image, Text } from "@chakra-ui/react"
 
 interface Props{
     movie: Movie
@@ -13,11 +13,17 @@ const getBackdropUrl = (backDropPath: string) => {
 const MovieCard = ({movie}: Props) => {
     const image_src = getBackdropUrl(movie.backdrop_path);
     return (
-        <Card.Root>
-            <Image src={image_src} boxSize="200px"/>
-            <CardBody>
-                <Heading>{movie.title}</Heading>
-            </CardBody>
+        <Card.Root maxW = "sm" overflow="hidden" borderRadius="10px">
+            <Image src={image_src} width="100%"/>
+            <Card.Body>
+                <Card.Title>{movie.title}</Card.Title>
+                <Text>{movie.overview}</Text>
+            </Card.Body>
+            <Card.Footer>
+                <Button>{`Rating: ${movie.vote_average}`}</Button>
+                <Button>{movie.adult ? "PG-21": "PG-14"}</Button>
+
+            </Card.Footer>
         </Card.Root>
     )
 }

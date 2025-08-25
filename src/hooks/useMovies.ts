@@ -8,6 +8,9 @@ export interface Movie {
     release_date: string; 
     vote_average: number;
     backdrop_path: string;
+    adult: boolean; 
+    genre_id: number;
+    overview: string
 
 }
 
