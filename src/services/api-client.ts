@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authorization } from './the-movie-db-auth';
 
 export default axios.create(
     {
@@ -9,7 +10,7 @@ export default axios.create(
         },
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMjk2MTM5NGM3N2UzYjZjZWZjNTA1MDU5MzBlZjEyYSIsIm5iZiI6MTc1NTg5OTE1NS4xMDYsInN1YiI6IjY4YThlNTEzNDZhOWM4OTNlZDZjZGJkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.w35tW4YGfhtIL0PUFyJBybDzjE9keNt-1HxIYxO2PNg'
+            Authorization: authorization
         }
     }
         
