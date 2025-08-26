@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
+import { Grid, GridItem,useBreakpointValue } from "@chakra-ui/react";
 import NavBar from '../src/components/created_components/NavBar';
 import MovieGrid from "./components/created_components/MovieGrid";
 
