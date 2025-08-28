@@ -5,6 +5,16 @@ interface Props{
     movie: Movie
 }
 
+const descriptionLimit = 200; 
+
+const shortenDescription = (description: string) => {
+    if (description.length > descriptionLimit){
+        return description.slice(0, descriptionLimit) + "....";
+    }
+    return description;
+
+}
+
 const imageBaseUrl = "https://image.tmdb.org/t/p/w300";
 
 const getBackdropUrl = (backDropPath: string) => {
@@ -17,7 +27,7 @@ const MovieCard = ({movie}: Props) => {
             <Image src={image_src} width="100%"/>
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
-                <Text>{movie.overview}</Text>
+                <Text>{shortenDescription(movie.overview)}</Text>
             </Card.Body>
             <Card.Footer>
                 <Button>{`Rating: ${movie.vote_average}`}</Button>
