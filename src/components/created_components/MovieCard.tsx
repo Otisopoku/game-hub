@@ -1,9 +1,19 @@
 import { hover, motion } from "motion/react";
 import { Movie } from "@/hooks/useMovies";
-import { Box, Button, Card, Image, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Button,
+  Card,
+  HStack,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
 import { SiPrimevideo } from "react-icons/si";
 import { useState } from "react";
+import axios from "axios";
+import { providers } from "@/assets/providers";
 
 interface Props {
   movie: Movie;
@@ -28,7 +38,6 @@ const MotionCard = motion.create(Card.Root);
 
 const MovieCard = ({ movie }: Props) => {
   const image_src = getBackdropUrl(movie.backdrop_path);
-  const isLong = movie.overview.length > descriptionLimit;
   const [hovered, setHovered] = useState(false);
   return (
     <MotionCard
@@ -54,11 +63,21 @@ const MovieCard = ({ movie }: Props) => {
     >
       <Image src={image_src} width="100%" />
       <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
+        <Card.Title fontFamily="serif" fontSize="2xl">
+          {movie.title}
+        </Card.Title>
       </Card.Body>
       <Card.Footer>
-        <Button>{`Rating: ${movie.vote_average}`}</Button>
-        <Button>{movie.adult ? "PG-21" : "PG-14"}</Button>
+        <HStack gap="2px" justify="space-between" w="100%">
+          <Badge fontSize="15px" color={movie.adult ? "red" : "green"}>
+            {movie.adult ? "PG-21" : "PG-14"}
+          </Badge>
+          <HStack>
+            {providers.map((provider) => (
+              <Image key={provider} src={provider} maxHeight="40px" />
+            ))}
+          </HStack>
+        </HStack>
       </Card.Footer>
 
       <Box
@@ -74,7 +93,7 @@ const MovieCard = ({ movie }: Props) => {
         overflow="auto"
       >
         {hovered && (
-          <Text mt={2} fontSize="sm">
+          <Text mt={2} fontSize="sm" fontFamily="">
             {movie.overview}
           </Text>
         )}
