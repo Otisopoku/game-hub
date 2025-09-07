@@ -12,12 +12,16 @@ function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`, // 1024px,
       }}
+      templateColumns={{
+        base: "1fr",
+        lg: "150px 1fr",
+      }}
     >
       <GridItem area="nav">
         <NavBar />
       </GridItem>
       {isLarge && (
-        <GridItem area="aside">
+        <GridItem area="aside" paddingX="15px">
           <GenreList />
         </GridItem>
       )}
