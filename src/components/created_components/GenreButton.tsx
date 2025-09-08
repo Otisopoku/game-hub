@@ -1,5 +1,6 @@
 import { Genre } from "@/hooks/useGenres";
 import { Button } from "@chakra-ui/react";
+import { useColorMode, useColorModeValue } from "../ui/color-mode";
 
 interface Props {
   genre: Genre;
@@ -30,13 +31,15 @@ const genreEmojis: Record<string, string> = {
 
 const GenreButton = ({ genre, onClickGenre }: Props) => {
   const emoji = genreEmojis[genre.name] || "";
+  const textColor = useColorModeValue("black", "white");
+
   return (
     <Button
       colorPalette="green"
       variant="outline"
       border="none"
       width="100%"
-      color="white"
+      color={textColor}
       fontFamily="sans-serif"
       _hover={{ color: "green.400", borderRadius: "30px" }}
       onClick={() => onClickGenre(genre)}
