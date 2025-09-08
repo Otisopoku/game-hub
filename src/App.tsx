@@ -4,6 +4,7 @@ import MovieGrid from "./components/created_components/MovieGrid";
 import GenreList from "./components/created_components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
+import SortMoviesComponent from "./components/created_components/SortMoviesComponent";
 
 function App() {
   const isLarge = useBreakpointValue({ base: false, lg: true });
@@ -31,7 +32,9 @@ function App() {
           />
         </GridItem>
       )}
+
       <GridItem area="main">
+        {isLarge && <SortMoviesComponent />}
         <MovieGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
