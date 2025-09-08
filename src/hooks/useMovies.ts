@@ -9,7 +9,7 @@ export interface Movie {
   vote_average: number;
   backdrop_path: string;
   adult: boolean;
-  genre_id: number;
+  genre_ids: number[];
   overview: string;
 }
 

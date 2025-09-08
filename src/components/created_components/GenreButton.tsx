@@ -1,7 +1,9 @@
+import { Genre } from "@/hooks/useGenres";
 import { Button } from "@chakra-ui/react";
 
 interface Props {
-  genreName: string;
+  genre: Genre;
+  onClickGenre: (genre: Genre) => void;
 }
 
 const genreEmojis: Record<string, string> = {
@@ -26,8 +28,8 @@ const genreEmojis: Record<string, string> = {
   Western: "🤠",
 };
 
-const GenreButton = ({ genreName }: Props) => {
-  const emoji = genreEmojis[genreName] || "";
+const GenreButton = ({ genre, onClickGenre }: Props) => {
+  const emoji = genreEmojis[genre.name] || "";
   return (
     <Button
       colorPalette="green"
@@ -37,8 +39,9 @@ const GenreButton = ({ genreName }: Props) => {
       color="white"
       fontFamily="sans-serif"
       _hover={{ color: "green.400", borderRadius: "30px" }}
+      onClick={() => onClickGenre(genre)}
     >
-      {emoji} {genreName}
+      {emoji} {genre.name}
     </Button>
   );
 };

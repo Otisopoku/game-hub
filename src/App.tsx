@@ -2,9 +2,12 @@ import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import NavBar from "../src/components/created_components/NavBar";
 import MovieGrid from "./components/created_components/MovieGrid";
 import GenreList from "./components/created_components/GenreList";
+import { useState } from "react";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
   const isLarge = useBreakpointValue({ base: false, lg: true });
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   return (
     <Grid
@@ -22,11 +25,11 @@ function App() {
       </GridItem>
       {isLarge && (
         <GridItem area="aside" paddingX="15px">
-          <GenreList />
+          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       )}
       <GridItem area="main">
-        <MovieGrid />
+        <MovieGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );

@@ -2,7 +2,11 @@ import useGenres, { Genre } from "@/hooks/useGenres";
 import GenreButton from "./GenreButton";
 import { Spinner, VStack, Text } from "@chakra-ui/react";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const { genres, isLoading, error } = useGenres();
 
   if (error) {
@@ -20,7 +24,10 @@ const GenreList = () => {
     <ul>
       {genres?.map((genre: Genre) => (
         <li key={genre.id}>
-          <GenreButton genreName={genre.name} />
+          <GenreButton
+            onClickGenre={() => onSelectGenre(genre)}
+            genre={genre}
+          />
         </li>
       ))}
     </ul>
