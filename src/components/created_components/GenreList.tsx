@@ -4,9 +4,10 @@ import { Spinner, VStack, Text } from "@chakra-ui/react";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { genres, isLoading, error } = useGenres();
 
   if (error) {
@@ -27,6 +28,7 @@ const GenreList = ({ onSelectGenre }: Props) => {
           <GenreButton
             onClickGenre={() => onSelectGenre(genre)}
             genre={genre}
+            selectedGenre={selectedGenre}
           />
         </li>
       ))}

@@ -25,7 +25,10 @@ function App() {
       </GridItem>
       {isLarge && (
         <GridItem area="aside" paddingX="15px">
-          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       )}
       <GridItem area="main">
