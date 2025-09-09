@@ -2,6 +2,7 @@ import { HStack, Image } from "@chakra-ui/react";
 import logo from "../../assets/logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchComponent from "./SearchComponent";
+import { Movie } from "@/hooks/useMovies";
 
 interface Props {
   searchInput: (inputText: string) => void;
