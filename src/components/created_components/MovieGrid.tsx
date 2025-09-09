@@ -8,15 +8,22 @@ import { sortFunctions } from "@/utility/sort";
 interface Props {
   selectedGenre: Genre | null;
   sortOption: string | null;
+  searchString: string | null;
 }
 
-const MovieGrid = ({ selectedGenre, sortOption }: Props) => {
+const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
   const { movies, error, isLoading } = UseMovies();
 
   console.log(`Selected Genre ${selectedGenre?.name}`);
-  const filteredMovies: Movie[] = selectedGenre
-    ? movies.filter((movie) => movie.genre_ids.includes(selectedGenre.id))
-    : [...movies]; // creates a copy of the movies
+  let filteredMovies: Movie[] =
+    selectedGenre != null
+      ? movies.filter((movie) => movie.genre_ids.includes(selectedGenre.id))
+      : [...movies]; // creates a copy of the movies
+
+  filteredMovies = searchString
+    ? filteredMovies.filter((movie) => movie.title.includes(searchString))
+    : [...filteredMovies];
+
   let sortMovies = [...filteredMovies];
 
   if (sortOption) {
