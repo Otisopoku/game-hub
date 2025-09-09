@@ -1,4 +1,4 @@
-import { HStack, Icon, Switch } from "@chakra-ui/react";
+import { HStack, Icon, Switch, Text } from "@chakra-ui/react";
 import { useColorMode } from "@/components/ui/color-mode";
 import { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -22,7 +22,9 @@ const ColorModeSwitch = () => {
           <Icon as={FaSun} color="yellow.500" />
         </Switch.Indicator>
         <Switch.Label>
-          {switchChecked ? "Light Mode" : "Dark Mode"}
+          <Text whiteSpace="nowrap">
+            {switchChecked ? "Light Mode" : "Dark Mode"}
+          </Text>
         </Switch.Label>
       </Switch.Root>
     </HStack>

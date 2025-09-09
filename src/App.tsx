@@ -35,9 +35,7 @@ function App() {
       )}
 
       <GridItem area="main">
-        {isLarge && (
-          <SortMoviesComponent sortBy={(option) => setSortBy(option)} />
-        )}
+        <SortMoviesComponent sortBy={(option) => setSortBy(option)} />
         <MovieGrid selectedGenre={selectedGenre} sortOption={sortBy} />
       </GridItem>
     </Grid>

@@ -20,7 +20,7 @@ const SortMoviesComponent = ({ sortBy }: Props) => {
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
-        <Button variant="outline" size="md" marginLeft="12px">
+        <Button variant="outline" size="md" margin="0 0 12px 12px">
           <HiSortDescending style={{ marginRight: "6px" }} />
           {selectedLabel}
         </Button>
