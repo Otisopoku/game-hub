@@ -1,8 +1,11 @@
 import { Input, InputElement, InputGroup } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
-import { HiSearchCircle } from "react-icons/hi";
 
-const SearchComponent = () => {
+interface Props {
+  searchInput: (inputText: string) => void;
+}
+
+const SearchComponent = ({ searchInput }: Props) => {
   return (
     <InputGroup startElement={<BsSearch />}>
       <Input
@@ -10,6 +13,10 @@ const SearchComponent = () => {
         variant="subtle"
         fontFamily="sans-serif"
         borderRadius="20px"
+        onChange={(e) => {
+          console.log("search prop type:", typeof searchInput);
+          searchInput(e.target.value);
+        }}
       />
     </InputGroup>
   );

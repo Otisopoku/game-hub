@@ -10,6 +10,7 @@ function App() {
   const isLarge = useBreakpointValue({ base: false, lg: true });
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const [sortBy, setSortBy] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <Grid
@@ -23,7 +24,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar searchInput={(inputText) => setSearchInput(inputText)} />
       </GridItem>
       {isLarge && (
         <GridItem area="aside" paddingX="15px">
