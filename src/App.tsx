@@ -2,7 +2,7 @@ import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import NavBar from "../src/components/created_components/NavBar";
 import MovieGrid from "./components/created_components/MovieGrid";
 import GenreList from "./components/created_components/GenreList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import SortMoviesComponent from "./components/created_components/SortMoviesComponent";
 
@@ -11,6 +11,16 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const [sortBy, setSortBy] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [debounceSearchInput, setDebounceSearchInput] = useState("");
+
+  useEffect(() => {
+    // controls when to search after the user modifies their search query.
+    const timeout = setTimeout(() => {
+      setDebounceSearchInput(searchInput);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [searchInput]);
 
   return (
     <Grid
@@ -38,7 +48,7 @@ function App() {
       <GridItem area="main">
         <SortMoviesComponent sortBy={(option) => setSortBy(option)} />
         <MovieGrid
-          searchString={searchInput}
+          searchString={debounceSearchInput}
           selectedGenre={selectedGenre}
           sortOption={sortBy}
         />

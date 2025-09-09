@@ -21,7 +21,9 @@ const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
       : [...movies]; // creates a copy of the movies
 
   filteredMovies = searchString
-    ? filteredMovies.filter((movie) => movie.title.includes(searchString))
+    ? filteredMovies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchString.toLowerCase())
+      )
     : [...filteredMovies];
 
   let sortMovies = [...filteredMovies];
