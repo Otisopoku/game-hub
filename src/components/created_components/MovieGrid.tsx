@@ -3,19 +3,25 @@ import { SimpleGrid, Text, Box } from "@chakra-ui/react";
 import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import { Genre } from "@/hooks/useGenres";
+import { sortFunctions } from "@/utility/sort";
 
 interface Props {
   selectedGenre: Genre | null;
+  sortOption: string | null;
 }
 
-const MovieGrid = ({ selectedGenre }: Props) => {
+const MovieGrid = ({ selectedGenre, sortOption }: Props) => {
   const { movies, error, isLoading } = UseMovies();
 
-  const filteredMovies: Movie[] =
-    selectedGenre != null
-      ? movies.filter((movie) => movie.genre_ids.includes(selectedGenre.id))
-      : movies;
+  console.log(`Selected Genre ${selectedGenre?.name}`);
+  const filteredMovies: Movie[] = selectedGenre
+    ? movies.filter((movie) => movie.genre_ids.includes(selectedGenre.id))
+    : [...movies]; // creates a copy of the movies
+  let sortMovies = [...filteredMovies];
 
+  if (sortOption) {
+    sortMovies = sortFunctions[sortOption](sortMovies);
+  }
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   const noMatches =
@@ -44,10 +50,9 @@ const MovieGrid = ({ selectedGenre }: Props) => {
         {isLoading &&
           skeletons.map((skeleton) => <MovieCardSkeleton key={skeleton} />)}
 
-        {!isLoading &&
-          filteredMovies.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))}
+        {sortMovies.map((movie) => (
+          <MovieCard movie={movie} key={movie.id} />
+        ))}
       </SimpleGrid>
     </>
   );

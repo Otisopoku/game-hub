@@ -9,6 +9,7 @@ import SortMoviesComponent from "./components/created_components/SortMoviesCompo
 function App() {
   const isLarge = useBreakpointValue({ base: false, lg: true });
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [sortBy, setSortBy] = useState("");
 
   return (
     <Grid
@@ -34,8 +35,10 @@ function App() {
       )}
 
       <GridItem area="main">
-        {isLarge && <SortMoviesComponent />}
-        <MovieGrid selectedGenre={selectedGenre} />
+        {isLarge && (
+          <SortMoviesComponent sortBy={(option) => setSortBy(option)} />
+        )}
+        <MovieGrid selectedGenre={selectedGenre} sortOption={sortBy} />
       </GridItem>
     </Grid>
   );
