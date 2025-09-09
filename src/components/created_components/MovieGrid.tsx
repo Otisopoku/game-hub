@@ -31,8 +31,7 @@ const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
   }
   const skeletons = [1, 2, 3, 4, 5, 6];
 
-  const noMatches =
-    selectedGenre && filteredMovies.length === 0 && !isLoading && !error;
+  const noMatches = sortMovies.length === 0 && !isLoading && !error;
 
   return (
     <>
@@ -41,10 +40,12 @@ const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
       {noMatches && (
         <Box textAlign="center" padding="20px">
           <Text fontSize="xl" fontWeight="semibold">
-            No movies found for the genre "{selectedGenre.name}" 😕
+            No movies found
+            {selectedGenre ? `in "${selectedGenre.name}"` : ""}
+            {searchString ? ` matching "${searchString}"` : ""} 😕
           </Text>
           <Text color="gray.500" mt={2}>
-            Try selecting a different genre or check back later.
+            Try adjusting your filters or search terms.
           </Text>
         </Box>
       )}
@@ -57,9 +58,8 @@ const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
         {isLoading &&
           skeletons.map((skeleton) => <MovieCardSkeleton key={skeleton} />)}
 
-        {sortMovies.map((movie) => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))}
+        {!isLoading &&
+          sortMovies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
       </SimpleGrid>
     </>
   );
