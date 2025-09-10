@@ -1,5 +1,6 @@
 import { hover, motion } from "motion/react";
 import { Movie } from "@/hooks/useMovies";
+import placeholder from "../../assets/no-image-placeholder-6f3882e0.webp";
 import {
   Badge,
   Box,
@@ -32,7 +33,8 @@ const shortenDescription = (description: string) => {
 const imageBaseUrl = "https://image.tmdb.org/t/p/w300";
 
 const getBackdropUrl = (backDropPath: string) => {
-  return `${imageBaseUrl}${backDropPath}`;
+  if (backDropPath) return `${imageBaseUrl}${backDropPath}`;
+  else return null;
 };
 
 const MotionCard = motion.create(Card.Root);
@@ -62,7 +64,7 @@ const MovieCard = ({ movie }: Props) => {
         damping: 20,
       }}
     >
-      <Image src={image_src} width="100%" />
+      <Image src={image_src ? image_src : placeholder} width="100%" />
       <Card.Body>
         <Card.Title fontFamily="sans-serif" fontSize="2xl">
           {movie.title}
