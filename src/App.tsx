@@ -5,6 +5,7 @@ import GenreList from "./components/created_components/GenreList";
 import { useEffect, useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import SortMoviesComponent from "./components/created_components/SortMoviesComponent";
+import MovieHeading from "./components/created_components/MovieHeading";
 
 function App() {
   const isLarge = useBreakpointValue({ base: false, lg: true });
@@ -46,6 +47,7 @@ function App() {
       )}
 
       <GridItem area="main">
+        <MovieHeading genre={selectedGenre} />
         <SortMoviesComponent sortBy={(option) => setSortBy(option)} />
         <MovieGrid
           searchString={debounceSearchInput}

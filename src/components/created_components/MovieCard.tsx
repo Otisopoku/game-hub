@@ -110,7 +110,7 @@ const MovieCard = ({ movie }: Props) => {
       </Box>
 
       <Card.Body>
-        <Card.Title fontFamily="sans-serif" fontSize="2xl">
+        <Card.Title fontFamily="sans-serif" fontSize="xl">
           {movie.title}
         </Card.Title>
       </Card.Body>
