@@ -11,7 +11,7 @@ const MovieHeading = ({ genre }: Props) => {
   return (
     <Heading
       marginBottom="10px"
-      marginLeft="12px"
+      marginLeft="10px"
       fontSize="3xl"
       fontWeight="bolder"
       as="h1"

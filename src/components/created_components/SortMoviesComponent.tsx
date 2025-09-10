@@ -25,7 +25,7 @@ const SortMoviesComponent = ({ sortBy }: Props) => {
           borderWidth="3px"
           variant="outline"
           size="md"
-          margin="0 0 12px 12px"
+          margin="0 0 10px 10px"
         >
           <HiSortDescending style={{ marginRight: "6px" }} />
           {selectedLabel}
