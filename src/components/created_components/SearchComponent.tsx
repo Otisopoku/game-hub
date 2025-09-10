@@ -1,4 +1,4 @@
-import UseMovies, { Movie } from "@/hooks/useMovies";
+import UseMovies from "@/hooks/useMovies";
 import { Box, Input, InputGroup, Popover, Portal } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";

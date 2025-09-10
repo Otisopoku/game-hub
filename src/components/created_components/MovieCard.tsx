@@ -2,13 +2,9 @@ import { motion } from "motion/react";
 import { Movie } from "@/hooks/useMovies";
 import placeholder from "../../assets/no-image-placeholder-6f3882e0.webp";
 import { Badge, Box, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
-import { Tooltip } from "@/components/ui/tooltip";
-import { SiPrimevideo } from "react-icons/si";
 import { useState } from "react";
-import axios from "axios";
 import { providers } from "@/assets/providers";
 import { useColorModeValue } from "../ui/color-mode";
-import { use } from "motion/react-client";
 
 interface Props {
   movie: Movie;
