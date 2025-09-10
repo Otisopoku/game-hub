@@ -57,14 +57,12 @@ const SearchComponent = ({ searchInput }: Props) => {
       </Popover.Trigger>
       <Portal>
         <Popover.Positioner>
-          <Popover.Content width="100%">
+          <Popover.Content>
             <Popover.Body>
               {movieSuggestions.map((movie) => (
                 <Box
                   key={movie.id}
                   padding="8px"
-                  borderBottom="1px solid"
-                  borderColor={useColorModeValue("gray.200", "gray.600")}
                   _hover={{
                     bg: hoverBg,
                     cursor: "pointer",

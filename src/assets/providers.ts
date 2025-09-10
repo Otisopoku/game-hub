@@ -1,6 +1,12 @@
-import amazonPrime from "../assets/icons8-amazon-prime-video-50.png";
-import googlePlay from "../assets/icons8-google-play-movies-and-tv-50.png";
-import hulu from "../assets/icons8-hulu-50.png";
-import netflix from "../assets/icons8-netflix-desktop-app-50.png";
+import { BsAmazon } from "react-icons/bs";
+import { SiNetflix, SiTubi, SiParamountplus, SiAppletv } from "react-icons/si";
+import { TbBrandDisney } from "react-icons/tb";
 
-export const providers = [amazonPrime, googlePlay, hulu, netflix];
+export const providers = [
+  SiAppletv,
+  SiNetflix,
+  SiTubi,
+  SiParamountplus,
+  TbBrandDisney,
+  BsAmazon,
+];

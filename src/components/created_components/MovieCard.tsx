@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   HStack,
+  Icon,
   Image,
   Text,
 } from "@chakra-ui/react";
@@ -63,18 +64,23 @@ const MovieCard = ({ movie }: Props) => {
     >
       <Image src={image_src} width="100%" />
       <Card.Body>
-        <Card.Title fontFamily="serif" fontSize="2xl">
+        <Card.Title fontFamily="sans-serif" fontSize="2xl">
           {movie.title}
         </Card.Title>
       </Card.Body>
       <Card.Footer>
         <HStack gap="2px" justify="space-between" w="100%">
-          <Badge fontSize="15px" color={movie.adult ? "red" : "green"}>
+          <Badge
+            fontFamily="sans-serif"
+            fontWeight="bold"
+            fontSize="12px"
+            color={movie.adult ? "red" : "green"}
+          >
             {movie.adult ? "PG-21" : "PG-14"}
           </Badge>
           <HStack>
-            {providers.map((provider) => (
-              <Image key={provider} src={provider} maxHeight="40px" />
+            {providers.map((provider, index) => (
+              <Icon as={provider} key={index} maxHeight="40px" />
             ))}
           </HStack>
         </HStack>

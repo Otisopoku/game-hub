@@ -20,7 +20,13 @@ const SortMoviesComponent = ({ sortBy }: Props) => {
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
-        <Button variant="outline" size="md" margin="0 0 12px 12px">
+        <Button
+          borderRadius="20px"
+          borderWidth="3px"
+          variant="outline"
+          size="md"
+          margin="0 0 12px 12px"
+        >
           <HiSortDescending style={{ marginRight: "6px" }} />
           {selectedLabel}
         </Button>
@@ -29,6 +35,7 @@ const SortMoviesComponent = ({ sortBy }: Props) => {
         <Menu.Positioner>
           <Menu.Content minW="10rem">
             <Menu.RadioItemGroup
+              fontFamily="sans-serif"
               value={selectedLabel}
               onValueChange={(event) => {
                 const label = event.value;
