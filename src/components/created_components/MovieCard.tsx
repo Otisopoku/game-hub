@@ -1,16 +1,7 @@
-import { hover, motion } from "motion/react";
+import { motion } from "motion/react";
 import { Movie } from "@/hooks/useMovies";
 import placeholder from "../../assets/no-image-placeholder-6f3882e0.webp";
-import {
-  Badge,
-  Box,
-  Button,
-  Card,
-  HStack,
-  Icon,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Badge, Box, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
 import { SiPrimevideo } from "react-icons/si";
 import { useState } from "react";

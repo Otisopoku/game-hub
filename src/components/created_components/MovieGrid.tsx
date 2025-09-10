@@ -14,7 +14,7 @@ interface Props {
 const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
   const { movies, error, isLoading } = UseMovies();
 
-  console.log(`Selected Genre ${selectedGenre?.name}`);
+  if (error) return null;
   let filteredMovies: Movie[] =
     selectedGenre != null
       ? movies.filter((movie) => movie.genre_ids.includes(selectedGenre.id))
@@ -39,8 +39,6 @@ const MovieGrid = ({ selectedGenre, sortOption, searchString }: Props) => {
 
   return (
     <>
-      {error && <Text color="red.500">{error}</Text>}
-
       {noMatches && (
         <Box textAlign="center" padding="20px">
           <Text fontSize="xl" fontWeight="semibold">

@@ -1,7 +1,6 @@
 import { Genre } from "@/hooks/useGenres";
-import { Button, Icon } from "@chakra-ui/react";
-import { useColorMode, useColorModeValue } from "../ui/color-mode";
-import { useState } from "react";
+import { Button } from "@chakra-ui/react";
+import { useColorModeValue } from "../ui/color-mode";
 
 interface Props {
   genre: Genre;
