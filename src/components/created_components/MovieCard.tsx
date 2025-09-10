@@ -16,16 +16,18 @@ import { SiPrimevideo } from "react-icons/si";
 import { useState } from "react";
 import axios from "axios";
 import { providers } from "@/assets/providers";
+import { useColorModeValue } from "../ui/color-mode";
+import { use } from "motion/react-client";
 
 interface Props {
   movie: Movie;
 }
 
-const descriptionLimit = 200;
+const descriptionLimit = 300;
 
 const shortenDescription = (description: string) => {
   if (description.length > descriptionLimit) {
-    return description.slice(0, descriptionLimit);
+    return description.slice(0, descriptionLimit) + "...";
   }
   return description;
 };
@@ -42,6 +44,17 @@ const MotionCard = motion.create(Card.Root);
 const MovieCard = ({ movie }: Props) => {
   const image_src = getBackdropUrl(movie.backdrop_path);
   const [hovered, setHovered] = useState(false);
+  const overlayBg = useColorModeValue(
+    "rgba(222, 215, 215, 0.6)",
+    "rgba(0, 0, 0, 0.75)"
+  );
+  const textShadow = useColorModeValue(
+    "0 1px 2px rgba(255,255,255,0.6)",
+    "0 1px 2px rgba(0,0,0,0.8)"
+  );
+
+  const textColor = useColorModeValue("black", "white");
+  const hoverBg = useColorModeValue("gray.100", "gray.700");
   return (
     <MotionCard
       maxW="2xl"
@@ -64,7 +77,38 @@ const MovieCard = ({ movie }: Props) => {
         damping: 20,
       }}
     >
-      <Image src={image_src ? image_src : placeholder} width="100%" />
+      <Box position="relative" width="100%">
+        <Image src={image_src ? image_src : placeholder} width="100%" />
+
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bg={overlayBg}
+          color={textColor}
+          backdropFilter="blur(0.5px)"
+          opacity={0}
+          p={4}
+          transition="opacity 0.25s ease"
+          _hover={{ opacity: 1 }}
+          borderRadius="inherit"
+          overflow="hidden"
+        >
+          {hovered && (
+            <Text
+              mt={2}
+              fontSize="sm"
+              fontFamily="sans-serif"
+              textShadow={textShadow}
+            >
+              {shortenDescription(movie.overview)}
+            </Text>
+          )}
+        </Box>
+      </Box>
+
       <Card.Body>
         <Card.Title fontFamily="sans-serif" fontSize="2xl">
           {movie.title}
@@ -87,25 +131,6 @@ const MovieCard = ({ movie }: Props) => {
           </HStack>
         </HStack>
       </Card.Footer>
-
-      <Box
-        position="absolute"
-        inset={0}
-        bg="rgba(0, 0, 0, 0, 0.85)"
-        color="white"
-        opacity={0}
-        p={4}
-        transition="opacity 0.25s ease"
-        _hover={{ opacity: 1 }}
-        borderRadius="xl"
-        overflow="auto"
-      >
-        {hovered && (
-          <Text mt={2} fontSize="sm" fontFamily="">
-            {movie.overview}
-          </Text>
-        )}
-      </Box>
     </MotionCard>
   );
 };
